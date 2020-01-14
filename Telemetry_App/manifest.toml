@@ -1,4 +1,0 @@
-name = "telemetry_database_demo"
-executable = "telemetry_database_demo.py"
-version = "1.0"
-author = "Manuel Lindo"
