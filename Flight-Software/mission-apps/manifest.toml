@@ -5,7 +5,7 @@
 #    version - The version number of the application
 #    author - The author of the application
 
-name = "my_first_app"
-executable = "my_first_app"
-version = "1.0"
+name = "logger-app"
+executable = "logger-app"
+version = "1.0.1"
 author = "Manuel Lindo"
