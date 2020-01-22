@@ -3,7 +3,7 @@ import i2c
 import threading
 
 # Get the configuration options for the service out of the `config.toml` file
-config = Config("my-payload-service")
+config = Config("imu-service")
 
 # Get the watchdog timeout value
 timeout = config.raw['watchdog-timeout']
