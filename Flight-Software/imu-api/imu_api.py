@@ -182,13 +182,16 @@ TELEMETRY = {
     #     "perm_fail_status2":   {"command": "BM2:TEL? 107,data", "length": 2, "parsing": "<H"},
     #     "temp_range":          {"command": "BM2:TEL? 114,data", "length": 2, "parsing": "<H"}
     # },
-    "dasa": {
-        "motor_position":      {"command": "DASA:TEL? 0,data", "length": 4, "parsing": "hex"},
-        "motor_angle":         {"command": "DASA:TEL? 1,data", "length": 4, "parsing": "hex"},
-        "motor_status":        {"command": "DASA:TEL? 2,data", "length": 1, "parsing": "hex"},
-        "pinpull_status":      {"command": "DASA:TEL? 3,data", "length": 1, "parsing": "hex"},
-        "rail_status":         {"command": "DASA:TEL? 4,data", "length": 1, "parsing": "hex"},
-        "motor_stop_mode":     {"command": "DASA:TEL? 5,data", "length": 1, "parsing": "hex"},
+    "data": {
+        "acceleration":             {"command": "DATA:TEL? 0,data", "length": 4, "parsing": "hex"},
+        "rate_turn":                {"command": "DATA:TEL? 1,data", "length": 4, "parsing": "hex"},
+        "magnetic_field":           {"command": "DATA:TEL? 2,data", "length": 4, "parsing": "hex"},
+        "velocity_increment":       {"command": "DATA:TEL? 3,data", "length": 4, "parsing": "hex"},
+        "orientation_increment":    {"command": "DATA:TEL? 4,data", "length": 4, "parsing": "hex"},
+        "free_acceleration":        {"command": "DATA:TEL? 5,data", "length": 4, "parsing": "hex"},
+        "orientation":              {"command": "DATA:TEL? 6,data", "length": 4, "parsing": "hex"},
+        "velocity":                 {"command": "DATA:TEL? 7,data", "length": 4, "parsing": "hex"},
+        "position":                 {"command": "DATA:TEL? 8,data", "length": 4, "parsing": "hex"},
     }
 #     "epsm": {
 #         "bcr1":                {"command": "EPS:TEL? 0,data", "length": 9, "parsing": "<HHhhB",
@@ -284,11 +287,11 @@ class IMU:
                 'the configuration data. Input: ' + str(fields))
 
         module_telem = TELEMETRY[module]
-        supervisor_telem = TELEMETRY['supervisor']
+        # supervisor_telem = TELEMETRY['supervisor']
         if fields == ["all"]:
             # Pulling all info
             requests = module_telem
-            requests.update(supervisor_telem)
+            # requests.update(supervisor_telem)
             return requests
 
         # Builds requested dict
@@ -297,8 +300,8 @@ class IMU:
         for field in fields:
             if field in module_telem:
                 requests[field] = module_telem[field]
-            elif field in supervisor_telem:
-                requests[field] = supervisor_telem[field]
+            # elif field in supervisor_telem:
+            #     requests[field] = supervisor_telem[field]
             else:
                 raise KeyError('Invalid field: '+str(field))
         return requests
@@ -310,7 +313,6 @@ class IMU:
         """
         # Create empty dictionary
         output_dict = {}
-
         for telem_field in dict:
             input_dict = dict[telem_field]
             # Write command for the imu to prepare the data
@@ -332,6 +334,8 @@ class IMU:
                     input_dict=input_dict,
                     read_data=read_data,
                     parsed_data=parsed_data))
+
+            print(output_dict)
 
         return output_dict
 
