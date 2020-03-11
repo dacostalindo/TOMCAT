@@ -1,0 +1,8 @@
+README.md
+imu_api.py
+setup.py
+imu.egg-info/PKG-INFO
+imu.egg-info/SOURCES.txt
+imu.egg-info/dependency_links.txt
+imu.egg-info/requires.txt
+imu.egg-info/top_level.txt

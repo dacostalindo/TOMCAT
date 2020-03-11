@@ -57,7 +57,7 @@ int main() {
 
 	//Buffer to store data from I2C bus
 	int k = 0;
-	while(k<2){
+	while(k<1){
 		string drdy = imu.DRDYread();
 		string one = "1"; //I hate cstrings
 		if(drdy == one){
