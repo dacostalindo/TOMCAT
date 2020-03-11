@@ -15,3 +15,5 @@ setup(name='imu',
           'i2c'
       ]
       )
+#python3 setup.py install
+#pip3 install requirements.txt
